@@ -20,14 +20,15 @@ class Position {
   }
 
   move() {
-    const currectDirection = this.direction.getDirection();
-    if (currectDirection === DirectionEnum.North) {
+    const currentDirection = this.direction.getDirection();
+    if (currentDirection === DirectionEnum.North) {
+      // return new Position(this.positionX, this.moveForward(this.positionY), this.direction)
       this.positionY = this.moveForward(this.positionY);
-    } else if (currectDirection === DirectionEnum.East) {
+    } else if (currentDirection === DirectionEnum.East) {
       this.positionX = this.moveForward(this.positionX);
-    } else if (currectDirection === DirectionEnum.West) {
+    } else if (currentDirection === DirectionEnum.West) {
       this.positionX = this.moveBackward(this.positionX);
-    } else if (currectDirection === DirectionEnum.South) {
+    } else if (currentDirection === DirectionEnum.South) {
       this.positionY = this.moveBackward(this.positionY);
     }
   }
@@ -37,7 +38,7 @@ class Position {
   }
 
   private moveForward(position: number): number {
-    return position === 9 ? 0 : position + 1;
+    return (position + 1) % 10;
   }
 
   getDirection() {

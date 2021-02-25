@@ -38,3 +38,13 @@ describe("rover -  start position 0:0:N", () => {
     expect(rover.getPosition()).toBe(position);
   });
 });
+describe("rover -  undo", () => {
+  it.each`
+    input   | position
+    ${"MU"} | ${"0:0:N"}
+  `("should move to $position when input is $input", ({ position, input }) => {
+    const rover = new Rover();
+    rover.command(input);
+    expect(rover.getPosition()).toBe(position);
+  });
+});

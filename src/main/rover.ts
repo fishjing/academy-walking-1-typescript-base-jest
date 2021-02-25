@@ -67,6 +67,22 @@ class Position {
   }
 }
 
+interface DirectionClass {
+  turnLeft(): Direction;
+  turnRight(): Direction;
+}
+
+class North implements DirectionClass {
+  turnLeft() {}
+  turnRight() {}
+}
+
+class South implements DirectionClass {}
+
+class East implements DirectionClass {}
+
+class West implements DirectionClass {}
+
 export class Rover {
   private position: Position;
 

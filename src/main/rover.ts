@@ -1,31 +1,32 @@
+import { CommandFactory } from "./CommandFactory";
 import { North } from "./DirectionClass";
 import { Position } from "./Position";
 
 export class Rover {
-  private position: Position;
+  private positionHistory: Position[];
 
   constructor() {
-    this.position = new Position(0, 0, new North());
+    this.positionHistory = [new Position(0, 0, new North())];
+  }
+
+  private lastPostion(): Position {
+    return this.positionHistory[this.positionHistory.length - 1];
   }
 
   command(actions: string) {
+    const factory = new CommandFactory();
     for (let l = 0; l < actions.length; l++) {
       const action = actions[l];
-      if (action === "L") {
-        this.position.turnLeft();
-      } else if (action === "R") {
-        this.position.turnRight();
-      } else if (action === "M") {
-        this.position = this.position.move();
-      }
+      const command = factory.getCommand(action, this.positionHistory);
+      this.positionHistory.push(command.move());
     }
   }
 
   getDirection() {
-    return this.position.getDirection();
+    return this.lastPostion().getDirection();
   }
 
   getPosition() {
-    return this.position.getPosition();
+    return this.lastPostion().getPosition();
   }
 }

@@ -40,8 +40,9 @@ describe("rover -  start position 0:0:N", () => {
 });
 describe("rover -  undo", () => {
   it.each`
-    input   | position
-    ${"MU"} | ${"0:0:N"}
+    input    | position
+    ${"MU"}  | ${"0:0:N"}
+    ${"MUU"} | ${"0:1:N"}
   `("should move to $position when input is $input", ({ position, input }) => {
     const rover = new Rover();
     rover.command(input);

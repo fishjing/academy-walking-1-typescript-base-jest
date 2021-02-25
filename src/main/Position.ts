@@ -11,12 +11,20 @@ export class Position {
     this.positionY = y;
   }
 
-  turnLeft() {
-    this.direction = this.direction.turnLeft();
+  turnLeft(): Position {
+    return new Position(
+      this.positionX,
+      this.positionY,
+      this.direction.turnLeft()
+    );
   }
 
-  turnRight() {
-    this.direction = this.direction.turnRight();
+  turnRight(): Position {
+    return new Position(
+      this.positionX,
+      this.positionY,
+      this.direction.turnRight()
+    );
   }
 
   move(): Position {

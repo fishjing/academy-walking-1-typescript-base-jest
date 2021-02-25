@@ -1,23 +1,4 @@
-enum Direction {
-  North = "N",
-  West = "W",
-  South = "S",
-  East = "E",
-}
-
-const TurnLeftDirection = {
-  [Direction.North]: Direction.West,
-  [Direction.West]: Direction.South,
-  [Direction.South]: Direction.East,
-  [Direction.East]: Direction.North,
-};
-
-const TurnRightDirection = {
-  [Direction.North]: Direction.East,
-  [Direction.East]: Direction.South,
-  [Direction.South]: Direction.West,
-  [Direction.West]: Direction.North,
-};
+import { Direction, DirectionEnum, North } from "./DirectionClass";
 
 class Position {
   private direction: Direction;
@@ -31,21 +12,22 @@ class Position {
   }
 
   turnLeft() {
-    this.direction = TurnLeftDirection[this.direction];
+    this.direction = this.direction.turnLeft();
   }
 
   turnRight() {
-    this.direction = TurnRightDirection[this.direction];
+    this.direction = this.direction.turnRight();
   }
 
   move() {
-    if (this.direction === Direction.North) {
+    const currectDirection = this.direction.getDirection();
+    if (currectDirection === DirectionEnum.North) {
       this.positionY = this.moveForward(this.positionY);
-    } else if (this.direction === Direction.East) {
+    } else if (currectDirection === DirectionEnum.East) {
       this.positionX = this.moveForward(this.positionX);
-    } else if (this.direction === Direction.West) {
+    } else if (currectDirection === DirectionEnum.West) {
       this.positionX = this.moveBackward(this.positionX);
-    } else if (this.direction === Direction.South) {
+    } else if (currectDirection === DirectionEnum.South) {
       this.positionY = this.moveBackward(this.positionY);
     }
   }
@@ -59,35 +41,21 @@ class Position {
   }
 
   getDirection() {
-    return this.direction;
+    return this.direction.getDirection();
   }
 
   getPosition() {
-    return `${this.positionX}:${this.positionY}:${this.direction}`;
+    return `${this.positionX}:${
+      this.positionY
+    }:${this.direction.getDirection()}`;
   }
 }
-
-interface DirectionClass {
-  turnLeft(): Direction;
-  turnRight(): Direction;
-}
-
-class North implements DirectionClass {
-  turnLeft() {}
-  turnRight() {}
-}
-
-class South implements DirectionClass {}
-
-class East implements DirectionClass {}
-
-class West implements DirectionClass {}
 
 export class Rover {
   private position: Position;
 
   constructor() {
-    this.position = new Position(0, 0, Direction.North);
+    this.position = new Position(0, 0, new North());
   }
 
   command(actions: string) {

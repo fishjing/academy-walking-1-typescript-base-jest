@@ -7,14 +7,17 @@ export class GameOfLife {
 
   play(x: number, y: number) {
     let total = 0;
-    for (let i = x - 1; i < x + 2; i++) {
-      for (let j = y - 1; j < y + 2; j++) {
+
+    for (let i = Math.max(0, x - 1); i < x + 2; i++) {
+      for (let j = Math.max(y - 1); j < y + 2; j++) {
         total += this.grid[i][j];
       }
     }
-    if (total < 3) {
-      return 0;
+    const currentGrid = this.grid[x][y];
+
+    if (currentGrid) {
+      return total === 3 || total === 4 ? 1 : 0;
     }
-    return 1;
+    return total === 3 ? 1 : 0;
   }
 }

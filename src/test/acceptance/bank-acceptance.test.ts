@@ -1,7 +1,6 @@
-import { AccountService } from "../main/accountService";
-import {AccountBalance} from "../main/accountBalance";
-import {AccountBalanceHistory} from "../main/accountBalanceHistory";
-
+import { AccountService } from "../../main/accountService";
+import { AccountBalance } from "../../main/accountBalance";
+import { AccountBalanceHistory } from "../../main/accountBalanceHistory";
 
 describe("Bank Acceptance", () => {
   it("It should display the current bank statement", () => {

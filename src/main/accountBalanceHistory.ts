@@ -1,4 +1,1 @@
-
-export class AccountBalanceHistory {
-
-}
+export class AccountBalanceHistory {}

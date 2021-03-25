@@ -1,5 +1,6 @@
-import {AccountBalance, AccountService} from "../main/accountService";
+import { AccountService} from "../main/accountService";
 import {mock} from "jest-mock-extended";
+import {AccountBalance} from "../main/accountBalance";
 
 describe ("Bank Unit",()=>{
     describe("When money is deposit into account",()=>{

@@ -3,7 +3,13 @@ export class AccountBalance{
     constructor() {
         this.balance=0;
     }
-    deposit(amount:number):void{
+    update(amount:number):void{
         this.balance+=amount;
     }
+
+    exportStatement():string {
+        return 'Not implemented';
+    }
+
+
 }

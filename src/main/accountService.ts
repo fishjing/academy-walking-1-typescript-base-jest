@@ -8,12 +8,12 @@ export class AccountService {
   }
 
   deposit(amount: number): void {
-    this.accountBalance.deposit(amount)
+    this.accountBalance.update(amount)
   }
   withdraw(amount: number): void {
-    throw "Not implement";
+    this.accountBalance.update(-amount)
   }
-  printStatement(): string {
-    throw "Not implement";
+  printStatement(): void {
+    this.accountBalance.exportStatement()
   }
 }
